@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { LanguageContextProvider } from "./contexts/Language";
+import { ThemeContextProvider } from "./contexts/Theme";
+import { Router } from '@reach/router';
+
+import { BaseLayout } from './components/layouts/base';
+import { StartPage } from './components/pages/start';
+import { SigninPage } from './components/pages/signin';
+import { MainPage } from './components/pages/main';
+// import {} from '';
+import './global-styles.css';
+import './utils/axios-settings';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LanguageContextProvider>
+      <ThemeContextProvider>
+        <BaseLayout>
+          <Router>
+            <StartPage path='start' />
+            <SigninPage path='signin' />
+            <MainPage path='main' />
+          </Router>
+        </BaseLayout>
+      </ThemeContextProvider>
+    </LanguageContextProvider>
   );
 }
 
