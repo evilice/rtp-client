@@ -16,7 +16,7 @@ function App() {
       <ThemeContextProvider>
         <BaseLayout>
           <Router>
-            <StartPage path='start' />
+            <StartPage path='/' />
             <SigninPage path='signin' />
             <MainPage path='main' />
           </Router>

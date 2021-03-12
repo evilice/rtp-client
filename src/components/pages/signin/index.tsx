@@ -33,11 +33,6 @@ export const SigninPage:FC<RouteComponentProps> = () => {
     setPassword(e.currentTarget.value);
   }, [setPassword]);
 
-  const clearForm = useCallback(() => {
-    setUsername('');
-    setPassword('');
-  }, [setUsername, setPassword]);
-
   const sigin = () => {
     execute({ data: { username, password }});
   };
