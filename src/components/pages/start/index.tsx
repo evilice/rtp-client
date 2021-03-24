@@ -1,19 +1,17 @@
 import { FC, useEffect } from 'react';
 import { RouteComponentProps, useNavigate } from '@reach/router';
-import useAxios from 'axios-hooks';
+// import useAxios from 'axios-hooks';
+import { useAuthUser } from '../../../contexts/AuthUser';
 import { LoadingLayout } from '../../layouts/loading';
 
 export const StartPage: FC<RouteComponentProps> = () => {
-  const [{ data, error }] = useAxios('/check-token');
+  // const [{ data, error }, execute] = useAxios('/check-token', { manual: true });
+  const { user } = useAuthUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (error && error.response?.status === 401)
-      navigate('/signin');
-    else if (data) {
-      navigate('/main');
-    }
-  }, [data, error, navigate]);
+    navigate(user ? '/main' : '/signin');
+  }, [user, navigate]);
 
   return (
     <LoadingLayout />

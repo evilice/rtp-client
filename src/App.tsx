@@ -1,28 +1,27 @@
-import { LanguageContextProvider } from "./contexts/Language";
-import { ThemeContextProvider } from "./contexts/Theme";
 import { Router } from '@reach/router';
 
 import { BaseLayout } from './components/layouts/base';
 import { StartPage } from './components/pages/start';
 import { SigninPage } from './components/pages/signin';
 import { MainPage } from './components/pages/main';
-// import {} from '';
+import { useAuthUser } from './contexts/AuthUser';
+
 import './global-styles.css';
-import './utils/axios-settings';
 
 function App() {
+  const { error } = useAuthUser();
+
   return (
-    <LanguageContextProvider>
-      <ThemeContextProvider>
-        <BaseLayout>
-          <Router>
-            <StartPage path='/' />
-            <SigninPage path='signin' />
-            <MainPage path='main' />
-          </Router>
-        </BaseLayout>
-      </ThemeContextProvider>
-    </LanguageContextProvider>
+    <BaseLayout>
+    {
+      !error ? (
+        <Router>
+          <StartPage path='/' />
+          <MainPage path='main' />
+        </Router>
+      ) : <SigninPage />
+    }
+    </BaseLayout>
   );
 }
 

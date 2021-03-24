@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import App from './App';
+import { LanguageContextProvider } from "./contexts/Language";
+// import { ThemeContextProvider } from "./contexts/Theme";
+import { AuthUserProvider } from './contexts/AuthUser';
+import './index.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LanguageContextProvider>
+      {/* <ThemeContextProvider> */}
+      <AuthUserProvider>
+        <App />
+      </AuthUserProvider>
+      {/* </ThemeContextProvider> */}
+    </LanguageContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
