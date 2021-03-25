@@ -1,5 +1,4 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
-// import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { TOKEN, REFRESH_TOKEN, BASE_URL } from "../constants";
 
 interface ITokens {

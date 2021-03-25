@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import { LanguageContextProvider } from "./contexts/Language";
 // import { ThemeContextProvider } from "./contexts/Theme";
+import { DisconnectProvider } from './contexts/Disconnect';
 import { AuthUserProvider } from './contexts/AuthUser';
 import './index.css';
 
@@ -12,9 +13,11 @@ ReactDOM.render(
   <React.StrictMode>
     <LanguageContextProvider>
       {/* <ThemeContextProvider> */}
-      <AuthUserProvider>
-        <App />
-      </AuthUserProvider>
+      <DisconnectProvider>
+        <AuthUserProvider>
+          <App />
+        </AuthUserProvider>
+      </DisconnectProvider>
       {/* </ThemeContextProvider> */}
     </LanguageContextProvider>
   </React.StrictMode>,

@@ -1,25 +1,25 @@
-import { Router } from '@reach/router';
+import { Router, Redirect } from '@reach/router';
 
 import { BaseLayout } from './components/layouts/base';
-import { StartPage } from './components/pages/start';
 import { SigninPage } from './components/pages/signin';
 import { MainPage } from './components/pages/main';
 import { useAuthUser } from './contexts/AuthUser';
+import { LoadingLayout } from './components/layouts/loading';
 
 import './global-styles.css';
 
 function App() {
-  const { error } = useAuthUser();
-
+  const { error, user } = useAuthUser();
+  console.log({ error, user });
   return (
     <BaseLayout>
     {
-      !error ? (
+      (!error && user) ? (
         <Router>
-          <StartPage path='/' />
-          <MainPage path='main' />
+          <Redirect from="/signin" to="/main" />
+          <MainPage path="/" />
         </Router>
-      ) : <SigninPage />
+      ) : (error && !user ? <SigninPage /> : <LoadingLayout />)
     }
     </BaseLayout>
   );

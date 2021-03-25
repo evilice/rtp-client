@@ -69,17 +69,25 @@ const AuthUserState = (userData:TUser = null) => {
   const refreshUserData = useCallback(async () => {
     const { token } = getTokens();
     if (token) {
-      const { status }: AxiosResponse = await axios.get('/check-token');
-      if ([200, 201].includes(status)) {
-        const { token } = getTokens();
-        const user = getUserDataFromToken(token || '');
-        user && setUser(user);
-        setError(null);
-      } else {
-        setError({ description: 'Unauthorized' });
+      try {
+        const { status }: AxiosResponse = await axios.get('/check-token');
+        if ([200, 201].includes(status)) {
+          const { token } = getTokens();
+          const user = getUserDataFromToken(token || '');
+          user && setUser(user);
+          setError(null);
+        } else {
+          setError({ description: 'Unauthorized' });
+        }
+      } catch(e) {
+        console.log({e});
+        setError({ description: 'Disconnected'});
       }
+    } else {
+      setUser(null);
+      setError({ description: 'Unauthorized' });
     }
-  }, [setUser]);
+  }, [setUser, setError]);
 
   useEffect(() => {
     (!user) && refreshUserData();
