@@ -1,5 +1,6 @@
 import { FC, useCallback, useState } from 'react';
-import { makeStyles, Button, TextField, Paper } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { makeStyles, Button, TextField, Paper, Grid } from '@material-ui/core';
 
 import { Row } from '../../partials/row';
 import { InputChangeEvent } from '../../../types';
@@ -60,7 +61,19 @@ export const SigninPage:FC = () => {
               fullWidth />
           </Row>
           <Row centred={ true }>
-            <Button variant="contained" color='primary' onClick={ submitHandler } disabled={ false }>Sign in</Button>
+            <Grid container>
+              <Grid item>
+                <div>
+                  <Link to="/registration">registration</Link>
+                </div>
+                <div>
+                  <Link to="/restore-password">restore password</Link>
+                </div>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color='primary' onClick={ submitHandler } disabled={ false }>Sign in</Button>
+              </Grid>
+            </Grid>
           </Row>
         </Paper>
       </div>

@@ -36,7 +36,7 @@ axios.interceptors.response.use(
             res(response);
           });
       } else {
-        reject();
+        reject({ description: response?.data, status: response?.status });
       }
     });
   }

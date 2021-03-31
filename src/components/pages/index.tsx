@@ -4,6 +4,7 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import { SigninPage } from './signin';
 import { MainPage } from './main';
 import { StartPage } from './start';
+import { SignoutPage } from './signout';
 import { RegistrationPage } from './registration';
 import { DisconnectPage } from './disconnect';
 import { useAuthUser } from '../../contexts/AuthUser';
@@ -20,6 +21,7 @@ export const Pages:FC = () => {
       { redirectTo && (<Redirect to={ redirectTo } />) }
       <Route path="/start" component={ StartPage } />
       <Route path="/signin" component={ SigninPage } />
+      <Route path="/signout" component={ SignoutPage } />
       <Route path="/registration" component={ RegistrationPage } />
       <Route path="/disconnect" component={ DisconnectPage } />
       <Route path="/" component={ MainPage } />

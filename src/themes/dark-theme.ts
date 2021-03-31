@@ -5,6 +5,8 @@ export const darkTheme: ThemeOptions = {
     MuiPaper: {
       root: {
         backgroundColor: "#2B2B30",
+        margin: 8,
+        padding: 8,
       },
       rounded: {
         borderRadius: 2,
